@@ -1,5 +1,6 @@
 import React from 'react'
-import {Button} from 'semantic-ui-react'
+import EventDashboard from '../../features/events/eventDashboard/EventDashboard'
+
 // pure javascript code
 /*
 function App() {
@@ -14,12 +15,9 @@ function App() {
 // jsx code
 function App() {
   return (
-    <div className="App">
+    <div>
       <h1>Re-vents</h1>
-      <button className="ui icon red button">
-        <i className="user icon" />CSS Button
-      </button>
-      <Button icon="user" content="React Button" color="green" />
+    <EventDashboard/>
     </div>
   )
 }
