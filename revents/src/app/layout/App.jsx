@@ -13,7 +13,7 @@ function App() {
 */
 
 // jsx code
-function App() {
+export default function App() {
   return (
     <div>
       <h1>Re-vents</h1>
@@ -22,4 +22,3 @@ function App() {
   )
 }
 
-export default App
