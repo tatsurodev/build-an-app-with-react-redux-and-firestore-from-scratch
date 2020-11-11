@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container } from 'semantic-ui-react'
 import NavBar from '../../features/nav/NavBar'
 import EventDashboard from '../../features/events/eventDashboard/EventDashboard'
@@ -16,14 +16,17 @@ function App() {
 
 // jsx code
 export default function App() {
+  // NavBarとEventDashboardの子EventFormでformOpen stateを使用するので、その両方へprop down可能なAppでstateを管理する
+  const [formOpen, setFormOpen] = useState(false)
+
   return (
     // import { Fragment } from 'react
     // <Fragment></Fragment>
     // 上下のfragmentは同値
     <>
-      <NavBar />
+      <NavBar setFormOpen={setFormOpen} />
       <Container className="main">
-        <EventDashboard />
+        <EventDashboard formOpen={formOpen} setFormOpen={setFormOpen} />
       </Container>
     </>
   )
