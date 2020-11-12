@@ -29,6 +29,7 @@ export default function EventDashboard({
             setEvents={setEvents}
             createEvent={handleCreateEvent}
             selectedEvent={selectedEvent}
+            key={selectedEvent ? selectedEvent.id : null}
           />
         )}
       </Grid.Column>
