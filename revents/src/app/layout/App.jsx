@@ -18,15 +18,31 @@ function App() {
 export default function App() {
   // NavBarとEventDashboardの子EventFormでformOpen stateを使用するので、その両方へprop down可能なAppでstateを管理する
   const [formOpen, setFormOpen] = useState(false)
+  const [selectedEvent, setSelectedEvent] = useState(null)
+
+  function handleSelectEvent(event) {
+    setSelectedEvent(event)
+    setFormOpen(true)
+  }
+
+  function handleCreateFormOpen() {
+    setSelectedEvent(null)
+    setFormOpen(true)
+  }
 
   return (
     // import { Fragment } from 'react
     // <Fragment></Fragment>
     // 上下のfragmentは同値
     <>
-      <NavBar setFormOpen={setFormOpen} />
+      <NavBar setFormOpen={handleCreateFormOpen} />
       <Container className="main">
-        <EventDashboard formOpen={formOpen} setFormOpen={setFormOpen} />
+        <EventDashboard
+          formOpen={formOpen}
+          setFormOpen={setFormOpen}
+          selectEvent={handleSelectEvent}
+          selectedEvent={selectedEvent}
+        />
       </Container>
     </>
   )

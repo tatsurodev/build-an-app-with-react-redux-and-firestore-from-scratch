@@ -2,8 +2,13 @@ import React, { useState } from 'react'
 import cuid from 'cuid'
 import { Segment, Header, Form, Button } from 'semantic-ui-react'
 
-export default function EventForm({ setFormOpen, setEvents, createEvent }) {
-  const initialValues = {
+export default function EventForm({
+  setFormOpen,
+  setEvents,
+  createEvent,
+  selectedEvent,
+}) {
+  const initialValues = selectedEvent ?? {
     title: '',
     category: '',
     description: '',
