@@ -16,6 +16,13 @@ export default function EventDashboard({
     setEvents([...events, event])
   }
 
+  function handleUpdateEvent(updateEvent) {
+    setEvents(
+      events.map((evt) => (evt.id === updateEvent.id ? updateEvent : evt))
+    )
+    selectEvent(null)
+  }
+
   return (
     <Grid>
       {/* semantic uiは、16 columns grid */}
@@ -29,6 +36,7 @@ export default function EventDashboard({
             setEvents={setEvents}
             createEvent={handleCreateEvent}
             selectedEvent={selectedEvent}
+            updateEvent={handleUpdateEvent}
             key={selectedEvent ? selectedEvent.id : null}
           />
         )}
