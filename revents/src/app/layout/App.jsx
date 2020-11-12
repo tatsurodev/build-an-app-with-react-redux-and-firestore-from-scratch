@@ -17,7 +17,7 @@ function App() {
 // jsx code
 export default function App() {
   // NavBarとEventDashboardの子EventFormでformOpen stateを使用するので、その両方へprop down可能なAppでstateを管理する
-  const [formOpen, setFormOpen] = useState(true)
+  const [formOpen, setFormOpen] = useState(false)
 
   return (
     // import { Fragment } from 'react
