@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Route } from 'react-router-dom'
 import { Container } from 'semantic-ui-react'
 import NavBar from '../../features/nav/NavBar'
@@ -20,20 +20,6 @@ function App() {
 
 // jsx code
 export default function App() {
-  // NavBarとEventDashboardの子EventFormでformOpen stateを使用するので、その両方へprop down可能なAppでstateを管理する
-  const [formOpen, setFormOpen] = useState(false)
-  const [selectedEvent, setSelectedEvent] = useState(null)
-
-  function handleSelectEvent(event) {
-    setSelectedEvent(event)
-    setFormOpen(true)
-  }
-
-  function handleCreateFormOpen() {
-    setSelectedEvent(null)
-    setFormOpen(true)
-  }
-
   return (
     <>
       <Route exact path="/" component={HomePage} />
@@ -41,12 +27,15 @@ export default function App() {
         path={'/(.+)'}
         render={() => (
           <>
-            <NavBar setFormOpen={handleCreateFormOpen} />
+            <NavBar />
             <Container className="main">
               <Route exact path="/" component={HomePage} />
               <Route exact path="/events" component={EventDashboard} />
               <Route path="/events/:id" component={EventDetailedPage} />
-              <Route path="/createEvent" component={EventForm} />
+              <Route
+                path={['/createEvent', '/manage/:id']}
+                component={EventForm}
+              />
             </Container>
           </>
         )}
