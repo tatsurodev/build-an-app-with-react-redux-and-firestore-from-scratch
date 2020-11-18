@@ -7,6 +7,7 @@ import App from './app/layout/App'
 import reportWebVitals from './reportWebVitals'
 import { BrowserRouter } from 'react-router-dom'
 import { configureStore } from './app/store/configureStore'
+import ScrollToTop from './app/layout/ScrollToTop'
 
 const store = configureStore()
 
@@ -16,6 +17,8 @@ function render() {
   ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
+        {/* router内でないとprops.locationにaccessできないのでBrowserRouter tag内に配置する必要あり */}
+        <ScrollToTop />
         <App />
       </BrowserRouter>
     </Provider>,
