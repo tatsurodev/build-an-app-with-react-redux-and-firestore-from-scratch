@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, useLocation } from 'react-router-dom'
 import { Container } from 'semantic-ui-react'
 import NavBar from '../../features/nav/NavBar'
 import EventDashboard from '../../features/events/eventDashboard/EventDashboard'
@@ -21,6 +21,8 @@ function App() {
 
 // jsx code
 export default function App() {
+  // props.location.keyが更新されないとEventForm componentがrerenderされないのでkeyをuseLocationで取得
+  const { key } = useLocation()
   return (
     <>
       <Route exact path="/" component={HomePage} />
@@ -37,6 +39,7 @@ export default function App() {
               <Route
                 path={['/createEvent', '/manage/:id']}
                 component={EventForm}
+                key={key}
               />
             </Container>
           </>

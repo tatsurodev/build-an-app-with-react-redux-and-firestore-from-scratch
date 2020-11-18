@@ -6,25 +6,11 @@ import EventList from './EventList'
 export default function EventDashboard() {
   const { events } = useSelector((state) => state.event)
 
-  // function handleCreateEvent(event) {
-  //   setEvents([...events, event])
-  // }
-
-  // function handleUpdateEvent(updateEvent) {
-  //   setEvents(
-  //     events.map((evt) => (evt.id === updateEvent.id ? updateEvent : evt))
-  //   )
-  // }
-
-  function handleDeleteEvent(eventId) {
-    // setEvents(events.filter((evt) => evt.id !== eventId))
-  }
-
   return (
     <Grid>
       {/* semantic uiは、16 columns grid */}
       <Grid.Column width={10}>
-        <EventList events={events} deleteEvent={handleDeleteEvent} />
+        <EventList events={events} />
       </Grid.Column>
       <Grid.Column width={6}>
         <h2>Event Filters</h2>

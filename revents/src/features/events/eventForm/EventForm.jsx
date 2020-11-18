@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { createEvent, updateEvent } from '../eventActions'
 
-export default function EventForm({ match }) {
+export default function EventForm({ match, history }) {
   const dispatch = useDispatch()
 
   const selectedEvent = useSelector((state) =>
@@ -35,6 +35,8 @@ export default function EventForm({ match }) {
             photoURL: './assets/user.png',
           })
         )
+
+    history.push('/events')
   }
 
   function handleInputChange(e) {
@@ -44,6 +46,7 @@ export default function EventForm({ match }) {
       [name]: value,
     })
   }
+
   return (
     <Segment clearing>
       <Header content={selectedEvent ? 'Edit the event' : 'Create new event'} />
