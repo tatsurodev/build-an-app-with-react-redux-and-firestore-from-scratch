@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { createEvent, updateEvent } from '../eventActions'
 import * as Yup from 'yup'
+import MyTextInput from '../../../app/common/form/MyTextInput'
 
 export default function EventForm({ match, history }) {
   const dispatch = useDispatch()
@@ -52,14 +53,7 @@ export default function EventForm({ match, history }) {
         onSubmit={(values) => console.log(values)}
       >
         <Form className="ui form">
-          <FormField>
-            <Field name="title" placeholder="Event title" />
-            <ErrorMessage
-              name="title"
-              // render propでcustomize
-              render={(error) => <Label basic color="red" content={error} />}
-            />
-          </FormField>
+          <MyTextInput name="title" placeholder="Event title" />
           <FormField>
             <Field name="category" placeholder="Category" />
           </FormField>
