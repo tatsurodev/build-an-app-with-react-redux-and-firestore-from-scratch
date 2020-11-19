@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import cuid from 'cuid'
-import { Formik, Form, Field } from 'formik'
-import { Segment, Header, Button, FormField } from 'semantic-ui-react'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { Segment, Header, Button, FormField, Label } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { createEvent, updateEvent } from '../eventActions'
+import * as Yup from 'yup'
 
 export default function EventForm({ match, history }) {
   const dispatch = useDispatch()
@@ -22,42 +23,42 @@ export default function EventForm({ match, history }) {
     date: '',
   }
 
-  const [values, setValues] = useState(initialValues)
+  const validationSchema = Yup.object({
+    title: Yup.string().required('You must provide a title'),
+  })
 
-  function handleFormSubmit() {
-    selectedEvent
-      ? dispatch(updateEvent({ ...selectedEvent, ...values }))
-      : dispatch(
-          createEvent({
-            ...values,
-            id: cuid(),
-            hostedBy: 'Bob',
-            attendees: [],
-            photoURL: './assets/user.png',
-          })
-        )
+  // function handleFormSubmit() {
+  //   selectedEvent
+  //     ? dispatch(updateEvent({ ...selectedEvent, ...values }))
+  //     : dispatch(
+  //         createEvent({
+  //           ...values,
+  //           id: cuid(),
+  //           hostedBy: 'Bob',
+  //           attendees: [],
+  //           photoURL: './assets/user.png',
+  //         })
+  //       )
 
-    history.push('/events')
-  }
-
-  function handleInputChange(e) {
-    const { name, value } = e.target
-    setValues({
-      ...values,
-      [name]: value,
-    })
-  }
+  //   history.push('/events')
+  // }
 
   return (
     <Segment clearing>
       <Header content={selectedEvent ? 'Edit the event' : 'Create new event'} />
       <Formik
         initialValues={initialValues}
+        validationSchema={validationSchema}
         onSubmit={(values) => console.log(values)}
       >
         <Form className="ui form">
           <FormField>
             <Field name="title" placeholder="Event title" />
+            <ErrorMessage
+              name="title"
+              // render propでcustomize
+              render={(error) => <Label basic color="red" content={error} />}
+            />
           </FormField>
           <FormField>
             <Field name="category" placeholder="Category" />
